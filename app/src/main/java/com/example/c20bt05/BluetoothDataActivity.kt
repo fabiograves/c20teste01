@@ -19,8 +19,9 @@ class BluetoothDataActivity : AppCompatActivity() {
         // Obter o dado Bluetooth do `Intent`
         val bluetoothData = intent?.getStringExtra("bluetooth_data")
 
-        // Exibir o dado Bluetooth na tela
-        textViewDadosBt.text = bluetoothData
+        if (bluetoothData != null) {
+            textViewDadosBt.text = bluetoothData
+        }
     }
 
     override fun onResume() {
