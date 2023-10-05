@@ -54,6 +54,10 @@ class BluetoothService : Service() {
         val bytesRead = inputStream?.read(buffer) ?: 0
         val data = String(buffer, 0, bytesRead).trim()
 
+        // Enviar os dados para a segunda página
+        val intent = Intent("BluetoothData").putExtra("bluetooth_data", data)
+        sendBroadcast(intent)
+
         return data
     }
 
