@@ -37,13 +37,12 @@ class BluetoothService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Conectar-se ao dispositivo Bluetooth selecionado pelo usuário
-        val selectedDevice = discoveredDevices.find { it.address == intent?.getStringExtra("device_address") }
+        // ...
 
-        if (selectedDevice != null) {
-            val connectThread = ConnectThread(selectedDevice)
-            connectThread.start()
-        }
+        // Iniciar a conexão Bluetooth
+        val selectedDevice: BluetoothDevice? = intent?.getParcelableExtra("device_address")
+        val connectThread = ConnectThread(selectedDevice ?: return Service.START_NOT_STICKY)
+        connectThread.start()
 
         return Service.START_NOT_STICKY
     }
